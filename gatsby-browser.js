@@ -1,5 +1,13 @@
+import React from 'react';
+import ThemeProvider from 'providers/ThemeProvider';
 
-import "./src/assets/style.css"
-// import "./src/assets/style-rtl.css"
-import "./src/assets/print.css"
-import "./src/assets/style-theme.css"
+/* export const onClientEntry = async () => {
+  if (typeof IntersectionObserver === "undefined") {
+    await import("intersection-observer");
+    console.log("IntersectionObserver polyfilled ;)");
+  }
+}; */
+
+export const onServiceWorkerUpdateReady = () => window.location.reload(true);
+
+export const wrapRootElement = ({ element }) => <ThemeProvider>{element}</ThemeProvider>;

@@ -114,4 +114,153 @@ export const fragments = graphql`
       }
     }
   }
+
+  fragment BlogPreviewContent on WpBlog {
+    uri
+    title
+    databaseId
+    excerpt
+    date(formatString: "LL")
+    featuredImage {
+      node {
+        altText
+        localFile {
+          ...Thumbnail
+        }
+      }
+    }
+    author {
+      node {
+        name
+        firstName
+        lastName
+        uri
+      }
+    }
+    categories {
+      nodes {
+        name
+        slug
+        uri
+      }
+    }
+  }
+
+  fragment BlogContent on WpBlog {
+    title
+    uri
+    content
+    date(formatString: "LL")
+    excerpt
+    featuredImage {
+      node {
+        altText
+        localFile {
+          ...HeroImage
+          publicURL
+        }
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+    author {
+      node {
+        name
+        firstName
+        lastName
+        uri
+        description
+        avatar {
+          url
+          width
+          height
+          imageFile {
+            ...AvatarImage
+          }
+        }
+      }
+    }
+    categories {
+      nodes {
+        name
+        slug
+        uri
+      }
+    }
+  }
+
+  fragment PortfolioPreviewContent on WpPortfolio {
+    uri
+    title
+    databaseId
+    date(formatString: "LL")
+    featuredImage {
+      node {
+        altText
+        localFile {
+          ...Thumbnail
+        }
+      }
+    }
+    author {
+      node {
+        name
+        firstName
+        lastName
+        uri
+      }
+    }
+    categories {
+      nodes {
+        name
+        slug
+        uri
+      }
+    }
+  }
+
+  fragment PortfolioContent on WpPortfolio {
+    title
+    uri
+    date(formatString: "LL")
+    featuredImage {
+      node {
+        altText
+        localFile {
+          ...HeroImage
+          publicURL
+        }
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+    author {
+      node {
+        name
+        firstName
+        lastName
+        uri
+        description
+        avatar {
+          url
+          width
+          height
+          imageFile {
+            ...AvatarImage
+          }
+        }
+      }
+    }
+    categories {
+      nodes {
+        name
+        slug
+        uri
+      }
+    }
+  }
 `

@@ -44,7 +44,7 @@ function Seo({ description, lang, meta, keywords, title, socialImage, uri = "", 
     <StaticQuery
       query={detailsQuery}
       render={(data) => {
-        const {site, wp} = data
+        const { site, wp } = data
 
         const siteUrl = site.siteMetadata.siteUrl || ""
 
@@ -54,10 +54,9 @@ function Seo({ description, lang, meta, keywords, title, socialImage, uri = "", 
           site.siteMetadata.description
 
         const titleText = title
-          ? `${title} | ${
-              wp.generalSettings.description ||
-              site.siteMetadata.title
-            }`
+          ? `${title} | ${wp.generalSettings.description ||
+          site.siteMetadata.title
+          }`
           : wp.generalSettings.description || site.siteMetadata.title
 
         return (
@@ -114,9 +113,9 @@ function Seo({ description, lang, meta, keywords, title, socialImage, uri = "", 
               .concat(
                 keywords.length > 0
                   ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `),
-                    }
+                    name: `keywords`,
+                    content: keywords.join(`, `),
+                  }
                   : []
               )
               .concat(imageMeta(siteUrl))
@@ -144,7 +143,7 @@ Seo.propTypes = {
 }
 
 const detailsQuery = graphql`
-  query DefaultSEOQuery {
+  query DefaussltSEOQuery {
     site {
       siteMetadata {
         title

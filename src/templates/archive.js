@@ -1,37 +1,34 @@
 import React from "react"
 import { graphql } from "gatsby"
-// import PostEntry from "../../components/post-entry"
-import Layout from "../components/Layout"
+import { Layout } from "components/theme"
 import Seo from "../components/Seo"
-// import SEO from "../../components/seo"
-// import NextIcon from "../../components/icons/next"
-// import PreviousIcon from "../../components/icons/previous"
-import PostPreview from "../components/PostPreview"
+
 import ArchivePagination from "../components/ArchivePagination"
+import { DefaultHeader } from "components/theme"
+import { PostPreview } from "components/post"
 
 const Archive = (props) => {
   const {
     data: {
-      allWpPost: { nodes, pageInfo },
+      allWpBlog: { nodes, pageInfo },
     },
     pageContext: { archiveType, archivePath, uri },
   } = props
 
   return (
-    <Layout
-      bodyClass="home blog wp-embed-responsive has-no-pagination showing-comments hide-avatars footer-top-visible customize-support">
+    <Layout>
       <Seo title="Home" description="Welcome to the Twenty Nineteen Theme." uri={uri} />
-
+      <DefaultHeader headerContent={props.data.wpMain} />
       {nodes &&
-      nodes.map((post, index) => {
-        return (
-          <PostPreview
-            key={index}
-            post={post}
-            isLast={index === nodes.length - 1}
-          />
-        )
-      })}
+        nodes.map((post, index) => {
+          return (
+            <PostPreview
+              key={index}
+              post={post}
+              isLast={index === nodes.length - 1}
+            />
+          )
+        })}
 
       <ArchivePagination {...pageInfo} archivePath={archivePath} />
     </Layout>
@@ -45,7 +42,7 @@ export const query = graphql`
     $userDatabaseId: Int
     $categoryDatabaseId: Int
   ) {
-    allWpPost(
+    allWpBlog(
       limit: $perPage
       skip: $offset
       filter: {
@@ -58,13 +55,25 @@ export const query = graphql`
       sort: { fields: date, order: DESC }
     ) {
       nodes {
-        ...PostPreviewContent
+        ...BlogPreviewContent
       }
       pageInfo {
         hasNextPage
         hasPreviousPage
         currentPage
         pageCount
+      }
+    }
+    wpMain(slug: {eq: "blog-page"}) {
+      main_content {
+        backgroundImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        heroText
       }
     }
   }

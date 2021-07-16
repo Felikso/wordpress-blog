@@ -30,7 +30,7 @@ module.exports = async ({ actions, graphql }, options) => {
           firstId: firstNode.id,
           archivePath: blogURI,
           uri: path,
-          archiveType: "post",
+          archiveType: "wpis",
           offset: perPage * index,
           pageNumber: index + 1,
           totalPages: chunkedContentNodes.length,

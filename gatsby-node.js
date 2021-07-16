@@ -2,6 +2,7 @@ const path = require(`path`)
 const glob = require(`glob`)
 
 const createBlog = require(`./create/createBlog`)
+const createPortfolio = require(`./create/createPortfolio`)
 const createContentTypes = require(`./create/createContentTypes`)
 const createCategories = require(`./create/createCategories`)
 const createAuthors = require(`./create/createAuthors`)
@@ -12,6 +13,7 @@ const getTemplates = () => {
 }
 
 exports.createPages = async (props) => {
+  const { createPage } = props.actions
   const { data: wpSettings } = await props.graphql(/* GraphQL */ `
     {
       wp {
@@ -19,18 +21,58 @@ exports.createPages = async (props) => {
           postsPerPage
         }
       }
+      allAirtableJson {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
     }
   `)
 
   const perPage = wpSettings.wp.readingSettings.postsPerPage || 10
-  const blogURI = "/"
+  const homeURI = "/"
+  const blogURI = "/blog"
+  const portfolioURI = "/portfolio"
   const templates = getTemplates()
+
+
 
   await createContentTypes(props, { templates })
   await createBlog(props, { perPage, blogURI })
-  await createCategories(props, { perPage })
-  await createAuthors(props, { perPage })
+  await createPortfolio(props, { perPage, portfolioURI })
+  await createHome(props, { perPage, homeURI })
+  /*   await createCategories(props, { perPage })
+    await createAuthors(props, { perPage }) */
+
+
+
+  const component = path.resolve(`./src/customedTemplates/single-item.jsx`)
+
+  wpSettings.allAirtableJson.edges.forEach(edge => {
+    createPage({
+      path: edge.node.slug,
+      component,
+      context: {
+        slug: edge.node.slug,
+      },
+    })
+  })
 }
+
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions
+
+  createPage({
+    ...page,
+    context: {
+      ...page.context,
+    },
+  })
+}
+
 
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
