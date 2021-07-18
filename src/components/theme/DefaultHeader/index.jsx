@@ -1,17 +1,18 @@
 import React from 'react'
-import { HomeImage, HomeImageBox } from "./styles"
+import { HomeImage, HomeImageBox, HomeContent } from "./styles"
 import { getImage } from "gatsby-plugin-image"
 
-export const DefaultHeader = ({ headerContent }) => {
+export const DefaultHeader = ({ headerContent, children, full }) => {
 
 
-  if (!headerContent?.main_content || headerContent.main_content === 0) return null
+  if (!headerContent || headerContent === 0) return null
 
-  const imageData = getImage(headerContent?.main_content?.backgroundImage?.localFile.childImageSharp.gatsbyImageData)
+  const imageData = getImage(headerContent?.backgroundImage?.localFile.childImageSharp.gatsbyImageData)
 
   return (
-    <HomeImageBox>
+    <HomeImageBox full={full}>
       <HomeImage image={imageData} />
+      <HomeContent>{children}</HomeContent>
     </HomeImageBox>
 
 

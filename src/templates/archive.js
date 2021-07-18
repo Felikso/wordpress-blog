@@ -1,12 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Layout } from "components/theme"
-import Seo from "../components/Seo"
-
-import ArchivePagination from "../components/ArchivePagination"
-import { DefaultHeader } from "components/theme"
-import { PostPreview } from "components/post"
-
+import { Layout, DefaultHeader } from "components/theme"
+import { Seo } from "components/common"
+import { PostPreview, ArchivePagination } from "components/post"
+import { MainWrapper } from "components/common"
+//blog
 const Archive = (props) => {
   const {
     data: {
@@ -15,22 +13,26 @@ const Archive = (props) => {
     pageContext: { archiveType, archivePath, uri },
   } = props
 
+  const bg = props.data.wpMain.main_content
+
   return (
     <Layout>
       <Seo title="Home" description="Welcome to the Twenty Nineteen Theme." uri={uri} />
-      <DefaultHeader headerContent={props.data.wpMain} />
-      {nodes &&
-        nodes.map((post, index) => {
-          return (
-            <PostPreview
-              key={index}
-              post={post}
-              isLast={index === nodes.length - 1}
-            />
-          )
-        })}
+      <DefaultHeader headerContent={bg} />
+      <MainWrapper>
+        {nodes &&
+          nodes.map((post, index) => {
+            return (
+              <PostPreview
+                key={index}
+                post={post}
+                isLast={index === nodes.length - 1}
+              />
+            )
+          })}
 
-      <ArchivePagination {...pageInfo} archivePath={archivePath} />
+        <ArchivePagination {...pageInfo} archivePath={archivePath} />
+      </MainWrapper>
     </Layout>
   )
 }

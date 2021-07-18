@@ -13,8 +13,7 @@ display: none;
 `
 
 export const MainNavIcon = styled.a`
-color: white;
-color: #fff;
+color: ${({ theme }) => theme.colors.secondary};
 text-transform: uppercase;
 text-decoration: none;
 letter-spacing: 0.15em;
@@ -22,11 +21,6 @@ letter-spacing: 0.15em;
 display: inline-block;
 padding: 15px 20px;
 position: relative;
-
-/* svg {
-    fill: green;
-    width: 100%;
-} */
 
 &::after{
     background: none repeat scroll 0 0 transparent;
@@ -36,7 +30,7 @@ position: relative;
     height: 2px;
     left: 50%;
     position: absolute;
-    background: #fff;
+    background: ${({ theme }) => theme.colors.secondary};
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
 }
@@ -47,12 +41,11 @@ position: relative;
 }
 
 svg {
-    color: white;
-    fill: silver;
-    transition: 1s;
+    color: ${({ theme }) => theme.colors.secondary};
+    transition: ${({ theme }) => theme.transitions.primary};
 }
 &:hover svg {
-    color: silver;
-    fill: black;
+    color: ${({ theme }) => theme.colors.third};
+
 }
 `

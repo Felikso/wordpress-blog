@@ -18,6 +18,7 @@ export const PortfolioWrapper = styled.section`
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 1rem auto;
+    width: 100%;
 
 `
 

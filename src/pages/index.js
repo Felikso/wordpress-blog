@@ -15,6 +15,7 @@ const InexPage = () => {
   const { wpMain, allWpPortfolio } = useStaticQuery(graphql`
         {
           wpMain(slug: {eq: "home-page"}) {
+            content
             home_page {
                 text
                 heading
@@ -56,15 +57,20 @@ const InexPage = () => {
 
   const content = wpMain.home_page
 
+  const innerText = wpMain.content
+
+  const bg = wpMain.main_content
+
   const samplePortfolio = allWpPortfolio.edges
   return (
 
     <Layout>
-      <DefaultHeader headerContent={wpMain} />
+      <DefaultHeader headerContent={bg} />
       <MainSlimWrapper>
         <ContentWrapper>
           <h3>{content.heading}</h3>
-          <p>{content.text}</p>
+          <div dangerouslySetInnerHTML={{ __html: innerText }} />
+
 
         </ContentWrapper>
         <Link to="/portfolio"><SectionButton>Portfolio</SectionButton></Link>

@@ -4,7 +4,7 @@ import { Layout } from "components/theme"
 import { PortfolioItem, Title, CategoryButtonWrapper, PortfolioWrapper } from "components"
 import { DefaultHeader } from "components/theme"
 import { MainWrapper, SectionButton } from "components/common"
-
+//portfolio
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
 }
@@ -34,6 +34,8 @@ const PortfolioArchive = (props) => {
     pageContext: { PortfolioArchiveType, PortfolioArchivePath, archivePath, uri },
   } = props
 
+  const bg = props.data.wpMain.main_content
+
   const [menuItems, setMenuItems] = useState(nodes)
   const [displayedItems, setDisplayedItems] = useState(nodes)
   const [currentCategory, setCurrentCategory] = useState("wszystkie")
@@ -59,7 +61,7 @@ const PortfolioArchive = (props) => {
   return (
 
     <Layout>
-      <DefaultHeader headerContent={props.data.wpMain} />
+      <DefaultHeader headerContent={bg} />
       <MainWrapper>
         <CategoryButtonWrapper>
           {categories.map((cat, index) => {

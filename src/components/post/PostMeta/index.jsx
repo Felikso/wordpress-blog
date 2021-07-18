@@ -1,54 +1,32 @@
 import React from "react"
-import AuthorIcon from "assets/svg/author.inline.svg"
-import { Link } from "gatsby"
-import DateIcon from "assets/svg/date.inline.svg"
-import CommentIcon from "assets/svg/comment.inline.svg"
 
-export const PostMeta = ({ author, title, date }) => {
+import { FaUserNinja } from "@react-icons/all-files/fa/FaUserNinja"
+import { BsFillCalendarFill } from "@react-icons/all-files/bs/BsFillCalendarFill"
+import { MetaUl, MetaBox } from "./styles"
+
+
+export const PostMeta = ({ author, date }) => {
     author = author?.node
     return (
-        <div className="post-meta-wrapper post-meta-single post-meta-single-top">
-            <ul className="post-meta">
-                <li className="post-author meta-wrapper">
-                    <span className="meta-icon">
-                        <span className="screen-reader-text">Post author</span>
-                        <AuthorIcon />
-                    </span>
-                    <span className="meta-text">
-                        By{" "}
-                        <Link to={author.uri}>
-                            {author.firstName
-                                ? author.lastName
-                                    ? author.firstName + " " + author.lastName
-                                    : author.firstName
-                                : author.name}
-                        </Link>
-                    </span>
+        <MetaBox>
+            <MetaUl>
+                <li>
+                    <FaUserNinja />
+                    <p>Dodane przez: {" "}
+                        {author.firstName
+                            ? author.lastName
+                                ? author.firstName + " " + author.lastName
+                                : author.firstName
+                            : author.name}
+                    </p>
                 </li>
-                <li className="post-date meta-wrapper">
-                    <span className="meta-icon">
-                        <span className="screen-reader-text">Post date</span>
-                        <DateIcon />
-                    </span>
-                    <span className="meta-text">{date}</span>
+                <li>
+                    <BsFillCalendarFill />
+                    <p>Data: {date}</p>
+
                 </li>
-                <li className="post-comment-link meta-wrapper">
-                    <span className="meta-icon">
-                        <CommentIcon />
-                    </span>
-                    <span className="meta-text">
-                        <a href="#respond">
-                            {/*TODO: Dynamic comments*/}
-                            No Comments
-                            <span className="screen-reader-text">
-                                {" "}
-                                on <span dangerouslySetInnerHTML={{ __html: title }} />
-                            </span>
-                        </a>
-                    </span>
-                </li>
-            </ul>
-        </div>
+            </MetaUl>
+        </MetaBox>
     )
 }
 

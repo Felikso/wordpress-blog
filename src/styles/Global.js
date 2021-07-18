@@ -661,7 +661,7 @@ export const Global = createGlobalStyle`
       line-height: 3rem;
     }
     p {
-      font-size: clamp(0.75rem,1.1vmax,2rem);
+      font-size: clamp(0.75rem,1.8vmax,2rem);
       line-height: 3rem;
     }
     li {
@@ -670,9 +670,11 @@ export const Global = createGlobalStyle`
     }
 
     em {
-      font-size: clamp(0.75rem,1vmax, 2rem);
+      font-size: clamp(0.75rem,1.8vmax, 2.5rem);
       line-height: 3rem;
     }
+
+
 
     
   }

@@ -4,40 +4,32 @@ import { Link } from "gatsby"
 import { FeaturedMedia } from "components/common"
 import { PostCategories, PostMeta } from "components/post"
 
-const PostPreview = ({ post, isLast }) => {
+import { PostTitle, PostArticle, PostExcerpt } from "./styles"
+
+export const PostPreview = ({ post, isLast }) => {
     return (
         <>
-            <article
-                className={`post-${post.databaseId} post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized`}
-                id={`post-${post.databaseId}`}
-            >
-                <header className="entry-header has-text-align-center">
-                    <div className="entry-header-inner section-inner medium">
-                        <PostCategories categories={post.categories} />
-
-                        <h2 className="entry-title heading-size-1">
-                            <Link
-                                to={post.uri}
-                                dangerouslySetInnerHTML={{ __html: post.title }}
-                            />
-                        </h2>
-
-                        <PostMeta
-                            title={post.title}
-                            author={post.author}
-                            date={post.date}
+            <PostArticle>
+                <header>
+                    <PostTitle>
+                        <Link
+                            to={post.uri}
+                            dangerouslySetInnerHTML={{ __html: post.title }}
                         />
-                    </div>
+                    </PostTitle>
+                    <PostMeta
+                        title={post.title}
+                        author={post.author}
+                        date={post.date}
+                    />
                 </header>
 
                 <FeaturedMedia image={post.featuredImage} />
 
-                <div className="post-inner thin ">
-                    <div className="entry-content">
-                        <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-                    </div>
-                </div>
-            </article>
+                <PostExcerpt>
+                    <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                </PostExcerpt>
+            </PostArticle>
 
             {!isLast && (
                 <hr

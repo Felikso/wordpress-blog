@@ -33,6 +33,8 @@ const HomeArchive = (props) => {
         pageContext: { PortfolioArchiveType, PortfolioArchivePath, archivePath, uri },
     } = props
 
+    const bg = props.data.wpMain.main_content
+
     const [menuItems, setMenuItems] = useState(nodes)
     const [displayedItems, setDisplayedItems] = useState(nodes)
     const [currentCategory, setCurrentCategory] = useState("wszystkie")

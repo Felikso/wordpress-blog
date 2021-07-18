@@ -1,13 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { Layout } from "components/theme"
-import Seo from "../../components/Seo"
-import Comments from "../../components/Comments"
-import ContentTypePagination from "../../components/ContentTypePagination"
-import AuthorBio from "../../components/AuthorBio"
-import PostMeta from "../../components/PostMeta"
-import PostCategories from "../../components/PostCategories"
-import FeaturedMedia from "../../components/FeaturedMedia"
+
+import { FeaturedMedia, Seo } from "components/common"
+import { PostMeta, PostPaginator, SingleArticle, SinglePostHeader, SinglePostContent } from "components/post"
+
+/* import "styles/postStyle.css" */
+
 
 const blog = ({ data }) => {
   const { nextPage, previousPage, page } = data
@@ -16,57 +15,40 @@ const blog = ({ data }) => {
     uri,
     content,
     featuredImage,
-    categories,
     excerpt,
-    databaseId,
     author,
     date,
   } = page
 
   return (
-    <Layout
-      bodyClass={`post-template-default single single-post postid-${databaseId} single-format-standard wp-embed-responsive singular has-post-thumbnail has-single-pagination showing-comments footer-top-visible customize-support`}
-    >
+    <Layout >
       <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
 
-      <article
-        className={`post-${databaseId} post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized`}
-        id={`post-${databaseId}`}
+      <SingleArticle
       >
-        <header className="entry-header has-text-align-center header-footer-group">
-          <div className="entry-header-inner section-inner medium">
-            <PostCategories categories={categories} />
-            <h1
-              className="entry-title"
-              dangerouslySetInnerHTML={{ __html: title }}
-            />
-            <div
-              className="intro-text section-inner max-percentage small"
-              dangerouslySetInnerHTML={{ __html: excerpt }}
-            />
-            <PostMeta title={title} author={author} date={date} />
-          </div>
-        </header>
-
-        <FeaturedMedia image={featuredImage} />
-
-        <div className="post-inner thin">
+        <SinglePostHeader>
+          <h1
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
           <div
-            className="entry-content"
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: excerpt }}
           />
-        </div>
-        <h5>TEST</h5>
-        <div className="section-inner">
-          <AuthorBio author={author} />
-          <ContentTypePagination
-            previousPage={previousPage}
-            nextPage={nextPage}
-            contentType={"Blog"}
-          />
-          <Comments />
-        </div>
-      </article>
+          <PostMeta title={title} author={author} date={date} />
+
+        </SinglePostHeader>
+
+        <FeaturedMedia header image={featuredImage} />
+
+        <SinglePostContent
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+
+        <PostPaginator
+          previousPage={previousPage}
+          nextPage={nextPage}
+          contentType={"Post"}
+        />
+      </SingleArticle>
     </Layout>
   )
 }

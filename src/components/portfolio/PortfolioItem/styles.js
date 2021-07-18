@@ -3,7 +3,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 export const ImageWrapper = styled.div`
     position: relative;
-    background: red;
+    background: ${({ theme }) => theme.border.primaryLight};
     display: flex;
     margin: 1em auto;
     border-radius: ${({ theme }) => theme.border.primary};

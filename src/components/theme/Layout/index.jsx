@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 
 import { ThemeProvider as ThemeProviderStyle } from "styled-components";
 import { themeStyleLight as theme } from "styles";

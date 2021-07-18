@@ -5,9 +5,24 @@ export const ContentWrapper = styled.section`
   color: ${({ theme }) => theme.colors.primary};
 /*   width: calc(100% - 80px);
   margin: 1rem auto; */
-  border-radius: 30px;
+  border-radius: ${({ theme }) => theme.border.primary};
   padding: 20px;
   border: solid 4px ${({ theme }) => theme.colors.primaryLight};
+
+  ${({ flex }) =>
+    flex &&
+    `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`}
+
+    ${({ lessVisbale, theme }) =>
+    lessVisbale &&
+    `
+    background: ${theme.colors.secondaryLight};
+    `}
   
   @media (min-width: ${({ theme }) => theme.device.m}){
 /*       width: 60%;

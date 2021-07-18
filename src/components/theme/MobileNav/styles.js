@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 
 export const BrandLink = styled(Link)`
   margin-left: 20px; 
-  color: white;
+  color: ${({ theme }) => theme.colors.secondary};
 
   h2 {
     margin: 0;
@@ -69,8 +69,6 @@ export const MenuIcon = styled.button`
   justify-content: space-around;
   height: 2rem;
   margin-left: 20px;
-/*   margin-right: 20px;
-  margin-top: 20px; */
   outline: thin-dotted;
   z-index: 11;
 
@@ -85,7 +83,7 @@ export const MenuIcon = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ menuOpen, theme }) => (menuOpen ? theme.colors.burgerOpen : theme.colors.burgerClose)};
+    background: ${({ menuOpen, theme }) => (menuOpen ? theme.nav.burgerOpen : theme.nav.burgerClose)};
     border-radius: 10px;
     transform-origin: 1px;
     transition: opacity 300ms, transform 300ms;
@@ -113,7 +111,7 @@ export const MenuLinks = styled.nav`
   justify-content: center;
   align-items: center;
   display: flex;
-  background: ${({ theme }) => theme.colors.openedNavBg};
+  background: ${({ theme }) => theme.colors.secondary};
   position: absolute;
   z-index: 5;
   top: 0;
@@ -122,7 +120,7 @@ export const MenuLinks = styled.nav`
   transition: 300ms;
   width: ${({ menuOpen }) => (menuOpen ? "60vw" : 0)};
 
-  @media (min-width: ${({ theme }) => theme.device.k}) {
+  @media (min-width: ${({ theme }) => theme.device.l}) {
     width: ${({ menuOpen }) => (menuOpen ? "40vw" : 0)};
   }  
 
@@ -153,13 +151,13 @@ export const MenuLinks = styled.nav`
         display: block;
         text-decoration: none;
         padding: 0.5rem 1rem 0.5rem 1rem;
-        color: red;
+        color: ${({ theme }) => theme.colors.primary};
         font-weight: 700;
         cursor: pointer;
         transition: all 0.5s ease-in-out;
     
         &:hover {
-          background: ${({ theme }) => theme.colors.primary};
+          background: ${({ theme }) => theme.colors.primaryLight};
           color: ${({ theme }) => theme.colors.secondary};
           padding: 0.5rem 1rem 0.5rem 1.3rem;
         }

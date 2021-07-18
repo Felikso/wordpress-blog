@@ -5,7 +5,7 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 
 import { TogglerBurgerBox, MenuBar, MenuIconContainer, MenuIcon, MenuLinks, MenuContentBox, BrandLink } from "./styles"
 
-import { Toggler, UniversalLink, SocialLinks } from 'components/theme';
+import { Toggler, SocialLinks } from 'components/theme';
 
 import { supportsPassiveEvents } from 'detect-it';
 

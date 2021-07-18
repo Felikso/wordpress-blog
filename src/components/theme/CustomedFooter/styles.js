@@ -134,7 +134,7 @@ color: ${({ theme }) => theme.colors.primaryLight};
 font-size: ${({ theme }) => theme.fontSize.xs}; 
 text-decoration: none;
 margin: .3em;
-transition: ${({ theme }) => theme.transitions.primaryLight}; 
+transition: ${({ theme }) => theme.transitions.primary};
 &:hover{
   color: ${({ theme }) => theme.colors.secondary};
   /* filter: brightness(0.6); */

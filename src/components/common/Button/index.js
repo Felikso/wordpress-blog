@@ -25,12 +25,17 @@ const BannerButton = styled.button`
 
 const SectionButton = styled(BannerButton)`
   color:  ${({ theme }) => theme.colors.secondary};
+  ${({ secondary, theme }) =>
+    secondary &&
+    `
+  color: ${theme.colors.third};
+  `}
   border: 4px solid ${({ theme }) => theme.colors.primary};
   transition: ${({ theme }) => theme.transitions.primary};
 
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primarys};
+    background: ${({ theme }) => theme.colors.primary};
     border: 4px solid  ${({ theme }) => theme.colors.secondary};
   }
 `

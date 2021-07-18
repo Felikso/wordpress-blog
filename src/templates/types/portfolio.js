@@ -1,10 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { Layout } from "components/theme"
-import Seo from "../../components/Seo"
 
 import { getImage } from "gatsby-plugin-image"
-import { Paginator } from "components/pagesParts"
+import { Paginator } from "components/portfolio"
+import { Seo } from "components/common"
 import { PortfolioHeader, PortfolioItemWrapper, PortoflioImage, ImageBox, PortfolioBlock } from "components"
 
 const portfolio = ({ data }) => {

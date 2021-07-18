@@ -6,7 +6,7 @@ module.exports = async ({ actions, graphql }, options) => {
 
   const { data } = await graphql(/* GraphQL */ `
     {
-      allWpPost(sort: { fields: modifiedGmt, order: DESC }) {
+      allWpBlog(sort: { fields: modifiedGmt, order: DESC }) {
         nodes {
           uri
           id
@@ -15,7 +15,7 @@ module.exports = async ({ actions, graphql }, options) => {
     }
   `)
 
-  const chunkedContentNodes = chunk(data.allWpPost.nodes, perPage)
+  const chunkedContentNodes = chunk(data.allWpBlog.nodes, perPage)
 
   await Promise.all(
     chunkedContentNodes.map(async (nodesChunk, index) => {
@@ -23,7 +23,7 @@ module.exports = async ({ actions, graphql }, options) => {
 
       const path = index === 0 ? blogURI : `${blogURI}page/${index + 1}/`
 
-        await actions.createPage({
+      await actions.createPage({
         component: resolve(`./src/templates/archive.js`),
         path: path,
         context: {

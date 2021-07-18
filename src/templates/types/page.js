@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { Layout } from "components/theme"
-import Seo from "../../components/Seo"
-import FeaturedMedia from "../../components/FeaturedMedia"
+
+import { FeaturedMedia, Seo } from "components/common"
 
 const page = ({ data }) => {
   const { page } = data

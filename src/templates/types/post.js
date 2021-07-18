@@ -5,7 +5,6 @@ import { Layout } from "components/theme"
 import { FeaturedMedia, Seo } from "components/common"
 import { PostCategories, PostMeta, ContentTypePagination } from "components/post"
 
-import "../styles/post.css"
 
 const post = ({ data }) => {
   const { nextPage, previousPage, page } = data
