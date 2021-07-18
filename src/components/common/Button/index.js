@@ -8,7 +8,7 @@ const BannerButton = styled.button`
   padding: 0.5rem 1rem;
   text-align: center;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: .7rem;
   letter-spacing: 0.3rem;
   font-weight: 700;
   border: 4px solid  ${({ theme }) => theme.colors.primary};
@@ -21,6 +21,10 @@ const BannerButton = styled.button`
     color:  ${({ theme }) => theme.colors.secondary};
     cursor: pointer;
   }
+
+  @media (min-width: ${({ theme }) => theme.device.m}){
+    font-size: 1.5rem;
+}
 `
 
 const SectionButton = styled(BannerButton)`

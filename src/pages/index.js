@@ -59,7 +59,7 @@ const InexPage = () => {
 
   const innerText = wpMain.content
 
-  const bg = wpMain.main_content
+  const bg = wpMain.main_content.backgroundImage
 
   const samplePortfolio = allWpPortfolio.edges
   return (

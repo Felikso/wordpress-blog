@@ -3,9 +3,7 @@ import React from "react"
 import { PaginatorArrowLeft, PaginatorArrowRight, PaginatorLinkRight, PaginatorLinkLeft } from "./styles"
 
 export const Paginator = ({ previousPage, nextPage }) => {
-    console.log(previousPage)
-    console.log('previousPage')
-    console.log(nextPage)
+
     return (
         <>
             {previousPage && (
@@ -13,10 +11,10 @@ export const Paginator = ({ previousPage, nextPage }) => {
                     css={``}
                     to={previousPage.uri}>
                     <PaginatorArrowRight />
-                    <span
+                    {/*                     <span
                         className="title-inner"
                         dangerouslySetInnerHTML={{ __html: previousPage.title }}
-                    />
+                    /> */}
                 </PaginatorLinkRight>
             )}
 
@@ -24,10 +22,10 @@ export const Paginator = ({ previousPage, nextPage }) => {
                 nextPage && (
                     <PaginatorLinkLeft to={nextPage.uri}>
                         <PaginatorArrowLeft />
-                        <span
+                        {/*                         <span
                             className="title-inner"
                             dangerouslySetInnerHTML={{ __html: nextPage.title }}
-                        />
+                        /> */}
                     </PaginatorLinkLeft>
                 )
             }

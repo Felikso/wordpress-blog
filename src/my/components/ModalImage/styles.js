@@ -54,28 +54,34 @@ export const CloseIcon = styled(AiFillCloseCircle)`
     @media (min-width:768px) {
         font-size: 50px;
     }
+
+
 `
 
 export const OpenIcon = styled(FaSearchPlus)`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-20px, 20px);
     z-index: 5;
-
-    color: white;
-    font-size: 30px;
-    transition: 1s;
-    opacity:.8;
+    color: transparent;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 
-    &:hover{
-        color: black;
-        opacity: .7;
-    }
-
-    @media (min-width:768px) {
+    @media (min-width: ${({ theme }) => theme.device.m}){
+        width: unset;
+        height: unset;
+        color: white;
+        transform: translate(-20px, 20px);
+        font-size: 30px;
+        transition: 1s;
+        opacity:.8;
         font-size: 50px;
+
+        &:hover{
+            color: black;
+            opacity: .7;
+        }
     }
 
 `

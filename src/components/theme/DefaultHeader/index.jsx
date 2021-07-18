@@ -4,10 +4,9 @@ import { getImage } from "gatsby-plugin-image"
 
 export const DefaultHeader = ({ headerContent, children, full }) => {
 
-
   if (!headerContent || headerContent === 0) return null
 
-  const imageData = getImage(headerContent?.backgroundImage?.localFile.childImageSharp.gatsbyImageData)
+  const imageData = getImage(headerContent.localFile)
 
   return (
     <HomeImageBox full={full}>

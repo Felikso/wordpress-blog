@@ -46,12 +46,13 @@ export const MenuBar = styled.header`
   width: 100%;
   transition: background 300ms;
   top: 0;
-  background:  ${({ background, theme }) => (background ? theme.colors.primary : "transparent")}; 
-  border-bottom: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primary};
+  border-bottom: 4px solid ${({ theme }) => theme.colors.primaryLight};
   z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 60px;
 `
 
 export const MenuIconContainer = styled.div`

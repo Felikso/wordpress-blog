@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useState } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 
 
@@ -12,7 +12,7 @@ import { supportsPassiveEvents } from 'detect-it';
 
 
 export const MobileNav = ({ links }) => {
-  const { wpMenu, wp } = useStaticQuery(graphql`
+  const { wpMenu, wp, allWpNavpage, allWpContentType } = useStaticQuery(graphql`
   {
     wpMenu(slug: { eq: "extended" }) {
       name
@@ -38,45 +38,42 @@ export const MobileNav = ({ links }) => {
         description
       }
     }
+
+    allWpNavpage {
+      nodes {
+        id
+        uri
+        title
+        side_menu {
+          hide
+          show
+        }
+        slug
+      }
+    }
+
+    allWpContentType(filter: { graphqlPluralName: { ne: "mediaItems" } }) {
+      nodes {
+        graphqlSingleName
+      }
+    }
   }
 `)
 
   if (!wpMenu?.menuItems?.nodes || wpMenu.menuItems.nodes === 0) return null
 
   const [menuOpen, toggleMenuOpen] = useState(false)
-  const [background, setBackground] = useState(false)
-  const navRef = useRef()
 
   const brandName = wp.generalSettings.title
   const slogan = wp.generalSettings.description
 
-  navRef.current = background
-  useEffect(() => {
-    const handleScroll = () => {
-      const show = window.scrollY > 60
-      if (navRef.current !== show) {
-        setBackground(show)
-      }
-    }
-    if (supportsPassiveEvents) {
-      // passive events are supported by the browser
-      document.addEventListener('scroll', handleScroll, {
-        capture: false,
-        passive: true,
-      });
-    } else {
-      // passive events are not supported by the browser
-      document.addEventListener('scroll', handleScroll, false);
-    }
+  console.log(allWpContentType)
 
-    return () => {
 
-      document.removeEventListener("scroll", handleScroll, { passive: true })
-    }
-  }, [])
+
 
   return (
-    <MenuBar background={background}>
+    <MenuBar >
       <MenuContentBox>
         <SocialLinks isExpanded />
         <BrandLink to="/">
@@ -97,6 +94,33 @@ export const MobileNav = ({ links }) => {
 
         <MenuLinks menuOpen={menuOpen}>
           <ul>
+            {allWpNavpage.nodes.map((menuItem, i) => {
+
+              return (
+                menuItem.side_menu.show &&
+                <li>
+                  <Link id={menuItem.id}
+                    key={menuItem.id} to={`/${menuItem.slug}`}>
+                    {menuItem.title}
+                  </Link>
+                </li>
+              )
+            })}
+            <li>
+              <Link
+                to="/blog">
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/portfolio">
+                Portfolio
+              </Link>
+            </li>
+
+          </ul>
+          {/*  <ul>
             {wpMenu.menuItems.nodes.map((menuItem, i) => {
               const pathItem = menuItem?.connectedNode?.node?.uri ?? menuItem.url
               const path = pathItem.replace('http://', '/');
@@ -112,7 +136,7 @@ export const MobileNav = ({ links }) => {
               )
             })}
 
-          </ul>
+          </ul> */}
         </MenuLinks>
       </TogglerBurgerBox>
     </MenuBar>

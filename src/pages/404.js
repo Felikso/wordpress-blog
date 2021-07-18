@@ -24,7 +24,7 @@ const ErrorPage = () => {
       `)
 
 
-  const bg = wpMain.header_background
+  const bg = wpMain.header_background.backgroundImage
 
   return (
 

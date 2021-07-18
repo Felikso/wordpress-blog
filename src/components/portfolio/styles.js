@@ -33,6 +33,14 @@ export const PortfolioHeader = styled.header`
   left: 50%;
   transform: translate(-50%, 10%);
   z-index: 2;
+  width: 100%;
+  text-align: center;
+
+  h1{
+    color: ${({ theme }) => theme.colors.secondary};
+    background: ${({ theme }) => theme.colors.thirdLight};
+  }
+
 `
 
 export const PortfolioBlock = styled.div`

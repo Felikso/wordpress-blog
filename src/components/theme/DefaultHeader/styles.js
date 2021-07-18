@@ -6,6 +6,7 @@ export const HomeImageBox = styled.section`
     width: 100%;
     height: 50vh;
     position: relative;
+    margin-top: 60px;
 
     ${({ full }) =>
         full &&

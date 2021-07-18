@@ -13,7 +13,7 @@ const Archive = (props) => {
     pageContext: { archiveType, archivePath, uri },
   } = props
 
-  const bg = props.data.wpMain.main_content
+  const bg = props.data.wpMain.main_content.backgroundImage
 
   return (
     <Layout>

@@ -115,6 +115,21 @@ export const fragments = graphql`
     }
   }
 
+  fragment NavpageContent on WpNavpage {
+    uri
+    title
+    content
+    featuredImage {
+      node {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+  }
+
   fragment BlogPreviewContent on WpBlog {
     uri
     title
